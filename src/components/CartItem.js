@@ -19,6 +19,7 @@ const CartItem = props => {
       </span>
       <RemoveBtn
         onClickRemove={props.onClickRemove}
+        onAdd={addItem}
         available={available}
         item={props.id}
       />

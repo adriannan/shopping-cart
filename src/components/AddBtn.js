@@ -4,11 +4,10 @@ const AddBtn = props => {
   return (
     <button
       onClick={() => {
-        props.onClickAdd(props.item);
-        props.onAdd();
+        props.onClickAdd(props.itemID);
       }}
       className="list-item_btn btn btn-light col-2"
-      disabled={props.available === 0 ? true : false}
+      disabled={props.shoppingCart.indexOf(props.itemID) !== -1}
     >
       <i class="fas fa-plus-circle"></i>
       Add to Cart

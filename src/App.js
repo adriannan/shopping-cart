@@ -1,18 +1,11 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  // Redirect,
-  Switch
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/components.css";
 import NavBar from "./components/NavBar";
 import List from "./components/List";
-import ListItem from "./components/ListItem";
 import ShoppingCart from "./components/ShoppingCart";
 import data from "./data.json";
-// import $ from "jquery";
 
 // function getItems() {
 //   fetch("https://www.reasonapps.pl/data.json").then(
@@ -29,19 +22,19 @@ import data from "./data.json";
 
 //   // });
 // }
-let max = 10;
 
 class App extends Component {
   state = {
     shoppingCart: [],
     items: 10
   };
+
   componentDidMount() {
     // getItems();
   }
-  handleAdd = item => {
+  handleAdd = itemID => {
     this.setState(prevState => ({
-      shoppingCart: [...prevState.shoppingCart, item]
+      shoppingCart: [...prevState.shoppingCart, itemID]
     }));
   };
   handleRemove = itemID => {
@@ -57,17 +50,7 @@ class App extends Component {
   };
 
   render() {
-    const itemsList = data.map(item => {
-      return (
-        <ListItem
-          key={item.id}
-          onClickAdd={this.handleAdd}
-          {...item}
-          shoppingCart={this.state.shoppingCart}
-        />
-      );
-    });
-    const sliceItemList = itemsList.slice(0, this.state.items);
+    const allItemsList = data.map(item => item);
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <section className="App" onClick={this.getApi}>
@@ -76,7 +59,15 @@ class App extends Component {
             <Route
               path="/"
               exact
-              render={() => <List load={this.loadMore} list={sliceItemList} />}
+              render={() => (
+                <List
+                  load={this.loadMore}
+                  onClickAdd={this.handleAdd}
+                  allItemsList={allItemsList}
+                  loadItems={this.state.items}
+                  shoppingCart={this.state.shoppingCart}
+                />
+              )}
             />
             <Route
               path="/cart"
@@ -87,6 +78,7 @@ class App extends Component {
                     item => this.state.shoppingCart.indexOf(item.id) !== -1
                   )}
                   onClickRemove={this.handleRemove}
+                  allItemsList={allItemsList}
                 />
               )}
             />

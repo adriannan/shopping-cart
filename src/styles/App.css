@@ -1,19 +1,15 @@
 body {
   background-color: #ece9de;
-  /* height: 100vh; */
-  /* height: 100%; */
 }
 
 .navbar {
   max-width: 960px;
+  margin-bottom: 1rem;
 }
 .container-list {
   max-width: 960px;
 }
-.list-group-item {
-  /* margin: 0.1em 0;
-  border-radius: 0.2em; */
-}
+
 .list-item_tit {
   margin-bottom: 0;
   font-size: 1rem;
@@ -23,7 +19,6 @@ body {
   margin: 0 0.5rem;
 }
 .list-item_price {
-  /* padding-right: 3.5rem; */
   margin-right: 3.5rem;
 }
 .nav-link {
@@ -41,5 +36,8 @@ body {
   transform: translateY(-50%);
 }
 .btn-load {
+  margin: 2em 0;
+}
+.list-group_summary {
   margin: 2em 0;
 }
