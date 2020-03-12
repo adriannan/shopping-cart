@@ -30,11 +30,11 @@ class App extends Component {
   }
   handleAdd = item => {
     console.log(item);
-    console.log(this.state.shoppingCart);
+    console.log(this.state.shoppingCart.length);
 
-    this.setState(prevState => {
-      prevState.shoppingCart.push(item);
-    });
+    this.setState(prevState => ({
+      shoppingCart: [...prevState.shoppingCart, item]
+    }));
   };
   render() {
     const itemsList = data.map(item => {
@@ -42,7 +42,7 @@ class App extends Component {
     });
     return (
       <section className="App" onClick={this.getApi}>
-        <NavBar />
+        <NavBar items={this.state.shoppingCart.length} />
         <div className="container-list container-fluid">
           <ul className="list-group">
             {itemsList.slice(0, 10)}state:{this.state.shoppingCart.length}

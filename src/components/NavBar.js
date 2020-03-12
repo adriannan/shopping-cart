@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavBar = () => {
+const NavBar = props => {
   return (
     <div className="container-fluid bg-dark">
       <nav className="navbar navbar-expand-lg navbar-dark d-flex justify-content-between  ml-auto mr-auto">
@@ -14,10 +14,13 @@ const NavBar = () => {
               Store
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="">
+          <li className="nav-item ">
+            <a className="nav-link " href="">
               <i className="fas fa-shopping-cart"></i>
               Cart
+              <span className="badge badge-secondary badge-pill ">
+                {props.items}
+              </span>
             </a>
           </li>
         </ul>

@@ -25,3 +25,7 @@
   border-color: #f8f9fa;
   box-shadow: none;
 }
+.badge {
+  margin-left: 0.5em;
+  /* width: 3em; */
+}
