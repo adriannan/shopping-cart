@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const NavBar = props => {
   return (
@@ -9,19 +10,19 @@ const NavBar = props => {
         </a>
         <ul className="navbar-nav d-flex flex-nowrap justify-content-end ">
           <li className="nav-item">
-            <a className="nav-link " href="">
+            <NavLink to="/" exact className="nav-link ">
               <i className="fas fa-store"></i>
               Store
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item ">
-            <a className="nav-link position-relative" href="">
+            <NavLink to="/cart" className="nav-link position-relative">
               <i className="fas fa-shopping-cart"></i>
               Cart
               <span className="badge badge-secondary badge-pill position-absolute ">
                 {props.items}
               </span>
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>

@@ -1,9 +1,16 @@
 import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  // Redirect,
+  Switch
+} from "react-router-dom";
 import "./styles/App.css";
 import "./styles/components.css";
 import NavBar from "./components/NavBar";
 import List from "./components/List";
 import ListItem from "./components/ListItem";
+import ShoppingCart from "./components/ShoppingCart";
 import data from "./data.json";
 // import $ from "jquery";
 
@@ -49,10 +56,21 @@ class App extends Component {
     });
     const sliceItemList = itemsList.slice(0, this.state.items);
     return (
-      <section className="App" onClick={this.getApi}>
-        <NavBar items={this.state.shoppingCart.length} />
-        <List load={this.loadMore} list={sliceItemList} />
-      </section>
+      <Router basename={process.env.PUBLIC_URL}>
+        <section className="App" onClick={this.getApi}>
+          <NavBar items={this.state.shoppingCart.length} />
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={() => <List load={this.loadMore} list={sliceItemList} />}
+            />
+            <Route path="/cart" exact render={() => <ShoppingCart />} />
+
+            <Route component={Error} />
+          </Switch>
+        </section>
+      </Router>
     );
   }
 }
