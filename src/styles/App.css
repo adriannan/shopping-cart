@@ -1,0 +1,24 @@
+.App {
+  /* background-color: gray; */
+}
+
+.navbar {
+  max-width: 960px;
+}
+.container-list {
+  max-width: 960px;
+}
+.list-item_tit {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.list-item_btn i {
+  margin: 0 0.5rem;
+}
+.nav-link {
+  margin-left: 1rem;
+}
+.nav-link i {
+  margin: 0 0.5rem;
+}
