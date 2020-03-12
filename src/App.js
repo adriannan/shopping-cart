@@ -5,6 +5,7 @@ import "./styles/components.css";
 import NavBar from "./components/NavBar";
 import List from "./components/List";
 import ShoppingCart from "./components/ShoppingCart";
+import SearchInput from "./components/SearchInput";
 import data from "./data.json";
 
 // function getItems() {
@@ -48,6 +49,11 @@ class App extends Component {
       items: prevState.items + 5
     }));
   };
+  loadLess = () => {
+    this.setState({
+      items: 10
+    });
+  };
 
   render() {
     const allItemsList = data.map(item => item);
@@ -66,6 +72,7 @@ class App extends Component {
                   allItemsList={allItemsList}
                   loadItems={this.state.items}
                   shoppingCart={this.state.shoppingCart}
+                  handleInputChange={this.loadLess}
                 />
               )}
             />

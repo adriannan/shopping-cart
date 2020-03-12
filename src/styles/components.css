@@ -25,3 +25,8 @@
   border-color: #f8f9fa;
   box-shadow: none;
 }
+.form-control:focus {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: none;
+  box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.125);
+}
