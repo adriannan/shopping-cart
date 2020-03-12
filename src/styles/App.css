@@ -27,3 +27,11 @@
 .nav-link i {
   margin: 0 0.5rem;
 }
+.navbar-nav {
+  margin-right: 1.6rem;
+}
+.badge {
+  top: 50%;
+  right: -1.6rem;
+  transform: translateY(-50%);
+}
