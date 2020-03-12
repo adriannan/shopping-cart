@@ -1,13 +1,13 @@
 import React from "react";
 
-const AddBtn = props => {
+const AddBtn = ({ onClickAdd, itemID, shoppingCart }) => {
   return (
     <button
       onClick={() => {
-        props.onClickAdd(props.itemID);
+        onClickAdd(itemID);
       }}
       className="list-item_btn btn btn-light col-2"
-      disabled={props.shoppingCart.indexOf(props.itemID) !== -1}
+      disabled={shoppingCart.indexOf(itemID) !== -1}
     >
       <i class="fas fa-plus-circle"></i>
       Add to Cart

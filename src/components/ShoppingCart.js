@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import CartItem from "./CartItem";
 
-const ShoppingCart = ({ list, cartList, onClickRemove, allItemsList }) => {
+const ShoppingCart = ({ cartList, onClickRemove }) => {
   const itemsList = cartList.map(item => {
     return <CartItem key={item.id} {...item} onClickRemove={onClickRemove} />;
   });
-  //   const [totalPrice, calcTotalPrice] = useState(0);
 
   const prices = cartList.map(item => item.price);
 
   let totalPrice = 0;
   prices.forEach(curNum => (totalPrice += curNum));
-
-  //   console.log(itemsList);
 
   return (
     <div className="container-list container-fluid ">
