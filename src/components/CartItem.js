@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import AddBtn from "./AddBtn";
+import RemoveBtn from "./RemoveBtn";
 
-const ListItem = props => {
+const CartItem = props => {
   const [available, setAvailable] = useState(1);
   function addItem() {
     setAvailable(0);
@@ -17,9 +17,8 @@ const ListItem = props => {
       <span className=" list-item_price d-flex  align-items-center justify-content-end col-2">
         {props.price} $
       </span>
-      <AddBtn
-        onClickAdd={props.onClickAdd}
-        onAdd={addItem}
+      <RemoveBtn
+        onClickRemove={props.onClickRemove}
         available={available}
         item={props.id}
       />
@@ -27,4 +26,4 @@ const ListItem = props => {
   );
 };
 
-export default ListItem;
+export default CartItem;

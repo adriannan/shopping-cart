@@ -44,6 +44,12 @@ class App extends Component {
       shoppingCart: [...prevState.shoppingCart, item]
     }));
   };
+  handleRemove = itemID => {
+    const newCartList = this.state.shoppingCart.filter(item => item !== itemID);
+    this.setState({
+      shoppingCart: newCartList
+    });
+  };
   loadMore = () => {
     this.setState(prevState => ({
       items: prevState.items + 5
@@ -52,7 +58,14 @@ class App extends Component {
 
   render() {
     const itemsList = data.map(item => {
-      return <ListItem key={item.id} onClick={this.handleAdd} {...item} />;
+      return (
+        <ListItem
+          key={item.id}
+          onClickAdd={this.handleAdd}
+          {...item}
+          shoppingCart={this.state.shoppingCart}
+        />
+      );
     });
     const sliceItemList = itemsList.slice(0, this.state.items);
     return (
@@ -65,7 +78,18 @@ class App extends Component {
               exact
               render={() => <List load={this.loadMore} list={sliceItemList} />}
             />
-            <Route path="/cart" exact render={() => <ShoppingCart />} />
+            <Route
+              path="/cart"
+              exact
+              render={() => (
+                <ShoppingCart
+                  cartList={data.filter(
+                    item => this.state.shoppingCart.indexOf(item.id) !== -1
+                  )}
+                  onClickRemove={this.handleRemove}
+                />
+              )}
+            />
 
             <Route component={Error} />
           </Switch>
