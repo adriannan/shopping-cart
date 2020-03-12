@@ -1,6 +1,7 @@
-.App {
+body {
   background-color: #ece9de;
-  height: 100vh;
+  /* height: 100vh; */
+  /* height: 100%; */
 }
 
 .navbar {
@@ -34,4 +35,7 @@
   top: 50%;
   right: -1.6rem;
   transform: translateY(-50%);
+}
+.btn-load {
+  margin: 2em 0;
 }

@@ -25,10 +25,3 @@
   border-color: #f8f9fa;
   box-shadow: none;
 }
-.badge {
-  /* margin-left: 0.5em; */
-  top: 50%;
-  right: -1.6rem;
-  transform: translateY(-50%);
-  /* width: 3em; */
-}
