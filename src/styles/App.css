@@ -1,5 +1,6 @@
 .App {
-  /* background-color: gray; */
+  background-color: #ece9de;
+  height: 100vh;
 }
 
 .navbar {
@@ -7,6 +8,10 @@
 }
 .container-list {
   max-width: 960px;
+}
+.list-group-item {
+  /* margin: 0.1em 0;
+  border-radius: 0.2em; */
 }
 .list-item_tit {
   margin-bottom: 0;

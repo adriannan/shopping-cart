@@ -1,0 +1,27 @@
+.btn-light:hover {
+  color: #ece9de;
+  background-color: #fcc454;
+  border-color: #fcc454;
+}
+.btn-light:not(:disabled):not(.disabled):active,
+.btn-light:not(:disabled):not(.disabled).active,
+.show > .btn-light.dropdown-toggle {
+  color: #fcc454;
+  background-color: #f8f9fa;
+  border-color: #ece9de;
+  box-shadow: none;
+}
+.btn-light:not(:disabled):not(.disabled):active:focus,
+.btn-light:not(:disabled):not(.disabled).active:focus,
+.show > .btn-light.dropdown-toggle:focus {
+  box-shadow: none;
+  background-color: #f8f9fa;
+  color: #fcc454;
+}
+.btn-light:focus,
+.btn-light.focus {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  box-shadow: none;
+}
