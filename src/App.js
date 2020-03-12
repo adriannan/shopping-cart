@@ -45,7 +45,7 @@ class App extends Component {
 
   render() {
     const itemsList = data.map(item => {
-      return <ListItem onClick={this.handleAdd} {...item} />;
+      return <ListItem key={item.id} onClick={this.handleAdd} {...item} />;
     });
     const sliceItemList = itemsList.slice(0, this.state.items);
     return (
