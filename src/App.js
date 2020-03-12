@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./styles/App.css";
+import "./styles/components.css";
 import NavBar from "./components/NavBar";
 import ListItem from "./components/ListItem";
 import data from "./data.json";
@@ -22,22 +23,30 @@ import data from "./data.json";
 
 class App extends Component {
   state = {
-    shoppingCart: [],
-    availableProducts: 1
+    shoppingCart: []
   };
   componentDidMount() {
     // getItems();
   }
+  handleAdd = item => {
+    console.log(item);
+    console.log(this.state.shoppingCart);
 
+    this.setState(prevState => {
+      prevState.shoppingCart.push(item);
+    });
+  };
   render() {
     const itemsList = data.map(item => {
-      return <ListItem {...item} />;
+      return <ListItem onClick={this.handleAdd} {...item} />;
     });
     return (
       <section className="App" onClick={this.getApi}>
         <NavBar />
         <div className="container-list container-fluid">
-          <ul className="list-group">{itemsList.slice(0, 10)}</ul>
+          <ul className="list-group">
+            {itemsList.slice(0, 10)}state:{this.state.shoppingCart.length}
+          </ul>
         </div>
       </section>
     );
