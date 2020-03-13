@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import CartItem from "./CartItem";
+import $ from "jquery";
 
 const ShoppingCart = ({ cartList, onClickRemove, onClickConfirm }) => {
+  const [visibleAlert, setVisibleAlert] = useState(false);
+  const showAlert = () => {
+    setVisibleAlert(true);
+    $(".alert").alert();
+  };
+  const closeAlert = () => {
+    setVisibleAlert(false);
+  };
+
   const itemsList = cartList.map(item => {
     return <CartItem key={item.id} {...item} onClickRemove={onClickRemove} />;
   });
@@ -23,12 +33,32 @@ const ShoppingCart = ({ cartList, onClickRemove, onClickConfirm }) => {
           <button
             className="list-item_btn btn btn-light col-2"
             type="submit"
-            onClick={onClickConfirm}
+            onClick={() => {
+              onClickConfirm();
+              showAlert();
+            }}
           >
             Confirm Order
           </button>
         )}
       </div>
+      {visibleAlert && (
+        <div
+          onClick={closeAlert}
+          class="alert alert-warning alert-dismissible fade show"
+          role="alert"
+        >
+          Your order has been confirmed. <strong>Thank You!</strong>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
