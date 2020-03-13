@@ -5,18 +5,25 @@ import "./styles/components.css";
 import NavBar from "./components/NavBar";
 import List from "./components/List";
 import ShoppingCart from "./components/ShoppingCart";
-import SearchInput from "./components/SearchInput";
-import data from "./data.json";
+// import SearchInput from "./components/SearchInput";
+// import data from "./data.json";
+import $ from "jquery";
 
 // function getItems() {
-//   fetch("https://www.reasonapps.pl/data.json").then(
-//     // fetch("https://www.reasonapps.pl/data.json", { mode: "no-cors" }).then(
+//   // fetch("https://www.reasonapps.pl/data.json").then(
+//   fetch("https://www.reasonapps.pl/data.json", {
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     credentials: "same-origin"
+//   }).then(
 //     response => {
 //       console.log(response);
 //       // if (response.ok) {
 //       //   return response;
 //       // }
 //     }
+//     // )
 //   );
 //   // .then(response => {
 //   //   console.log(response);
@@ -27,12 +34,35 @@ import data from "./data.json";
 class App extends Component {
   state = {
     shoppingCart: [],
-    items: 10
+    items: 15,
+    visibleItems: 5,
+    dataList: [],
+    onSearching: false,
+    inputValue: "",
+    filteredItems: []
   };
 
   componentDidMount() {
-    // getItems();
+    fetch(
+      "https://cors-anywhere.herokuapp.com/https://www.reasonapps.pl/data.json"
+    )
+      .then(response => response.json())
+      .then(dataList => this.setState({ dataList }));
   }
+  // componentDidMount() {
+  // getItems();
+  // $(window).scroll(function() {
+  //   if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+  //     // ajax call get data from server and append to the div
+  //   }
+  // });
+  // }
+
+  handleSearch = () => {
+    this.setState({
+      items: document.querySelector(".list-group").childNodes.length
+    });
+  };
   handleAdd = itemID => {
     this.setState(prevState => ({
       shoppingCart: [...prevState.shoppingCart, itemID]
@@ -46,14 +76,35 @@ class App extends Component {
   };
   loadMore = () => {
     this.setState(prevState => ({
-      items: prevState.items + 5
+      items: prevState.items + 10
     }));
   };
-  loadLess = () => {
+  handleInputChange = e => {
+    let filteredItemsList = [];
+
     this.setState({
-      items: 10
+      // items: 10,
+      onSearching: true,
+      inputValue: e.target.value,
+      filteredItems: filteredItemsList
+    });
+    this.state.dataList.forEach(item => {
+      if (
+        item.name.toLowerCase().includes(this.state.inputValue.toLowerCase())
+      ) {
+        filteredItemsList.push(item);
+      }
     });
   };
+  componentDidUpdate() {
+    if (this.state.onSearching && this.state.inputValue === "") {
+      this.setState({
+        onSearching: false,
+        items: 15
+      });
+    }
+  }
+
   confirmOrder = () => {
     this.setState(prevState => ({
       shoppingCart: []
@@ -61,10 +112,9 @@ class App extends Component {
   };
 
   render() {
-    const allItemsList = data.map(item => item);
     return (
       <Router basename={process.env.PUBLIC_URL}>
-        <section className="App" onClick={this.getApi}>
+        <section className="App">
           <NavBar items={this.state.shoppingCart.length} />
           <Switch>
             <Route
@@ -74,10 +124,14 @@ class App extends Component {
                 <List
                   load={this.loadMore}
                   onClickAdd={this.handleAdd}
-                  allItemsList={allItemsList}
+                  allItemsList={this.state.dataList}
                   loadItems={this.state.items}
                   shoppingCart={this.state.shoppingCart}
-                  handleInputChange={this.loadLess}
+                  handleInputChange={this.handleInputChange}
+                  onSearching={this.state.onSearching}
+                  inputValueState={this.state.inputValue}
+                  filteredItems={this.state.filteredItems}
+                  // handleSearch={this.handleSearch}
                 />
               )}
             />
@@ -86,11 +140,10 @@ class App extends Component {
               exact
               render={() => (
                 <ShoppingCart
-                  cartList={data.filter(
+                  cartList={this.state.dataList.filter(
                     item => this.state.shoppingCart.indexOf(item.id) !== -1
                   )}
                   onClickRemove={this.handleRemove}
-                  allItemsList={allItemsList}
                   onClickConfirm={this.confirmOrder}
                 />
               )}

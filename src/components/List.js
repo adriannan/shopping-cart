@@ -8,22 +8,24 @@ const List = ({
   allItemsList,
   loadItems,
   shoppingCart,
-  handleInputChange
+  handleInputChange,
+  onSearching,
+  inputValueState,
+  filteredItems
 }) => {
-  // use hook to filter
-  const [inputValue, setInputValue] = useState("");
-
-  const itemsName = allItemsList.map(item => item);
-
-  let filteredItems = [];
-  itemsName.forEach(item => {
-    if (item.name.toLowerCase().includes(inputValue.toLowerCase())) {
-      filteredItems.push(item);
-    }
-  });
-
   // setting available product list
-  const allItems = filteredItems.map(item => {
+  const allFilteredItems = filteredItems.map(item => {
+    return (
+      <ListItem
+        key={item.id}
+        id={item.id}
+        onClickAdd={onClickAdd}
+        {...item}
+        shoppingCart={shoppingCart}
+      />
+    );
+  });
+  const allItems = allItemsList.map(item => {
     return (
       <ListItem
         key={item.id}
@@ -39,18 +41,29 @@ const List = ({
   return (
     <div className="container-list container-fluid ">
       <SearchInput
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        loadItems={loadItems}
+        inputValue={inputValueState}
         handleInputChange={handleInputChange}
       />
-      <ul className="list-group">{sliceItemList}</ul>
-      <button
-        className="btn-load btn btn-light btn-block col-3 mx-auto"
-        onClick={load}
-      >
-        Load More
-      </button>
+      {onSearching && (
+        <ul
+          className="list-group"
+          style={{ maxHeight: "500px", overflow: "scroll" }}
+        >
+          {allFilteredItems}
+        </ul>
+      )}
+
+      {!onSearching && (
+        <>
+          <ul className="list-group">{sliceItemList}</ul>
+          <button
+            className="btn-load btn btn-light btn-block col-3 mx-auto"
+            onClick={load}
+          >
+            Load More
+          </button>
+        </>
+      )}
     </div>
   );
 };

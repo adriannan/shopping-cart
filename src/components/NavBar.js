@@ -5,9 +5,9 @@ const NavBar = props => {
   return (
     <div className="container-fluid bg-dark">
       <nav className="navbar navbar-expand-lg navbar-dark d-flex justify-content-between  ml-auto mr-auto">
-        <NavLink to="/" exact className="navbar-brand ">
+        <a href="" className="navbar-brand ">
           Shopping App
-        </NavLink>
+        </a>
         <ul className="navbar-nav d-flex flex-nowrap justify-content-end ">
           <li className="nav-item">
             <NavLink to="/" exact className="nav-link ">
