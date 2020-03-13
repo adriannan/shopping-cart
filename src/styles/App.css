@@ -1,6 +1,9 @@
 body {
   background-color: #ece9de;
 }
+.App {
+  position: relative;
+}
 
 .navbar {
   max-width: 960px;
@@ -38,6 +41,18 @@ body {
 .btn-load {
   margin: 2em 0;
 }
+.btn-up {
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
+}
 .list-group_summary {
   margin: 2em 0;
+}
+.home__link {
+  color: #fcc454;
+  padding-left: 0.3rem;
+}
+.home__link:hover {
+  color: #212529;
 }
