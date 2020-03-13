@@ -54,6 +54,11 @@ class App extends Component {
       items: 10
     });
   };
+  confirmOrder = () => {
+    this.setState(prevState => ({
+      shoppingCart: []
+    }));
+  };
 
   render() {
     const allItemsList = data.map(item => item);
@@ -86,6 +91,7 @@ class App extends Component {
                   )}
                   onClickRemove={this.handleRemove}
                   allItemsList={allItemsList}
+                  onClickConfirm={this.confirmOrder}
                 />
               )}
             />

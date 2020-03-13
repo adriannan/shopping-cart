@@ -1,7 +1,7 @@
 import React from "react";
 import CartItem from "./CartItem";
 
-const ShoppingCart = ({ cartList, onClickRemove }) => {
+const ShoppingCart = ({ cartList, onClickRemove, onClickConfirm }) => {
   const itemsList = cartList.map(item => {
     return <CartItem key={item.id} {...item} onClickRemove={onClickRemove} />;
   });
@@ -22,7 +22,11 @@ const ShoppingCart = ({ cartList, onClickRemove }) => {
           {Math.round(totalPrice * 100) / 100} $
         </span>
         {itemsList.length > 0 && (
-          <button className="list-item_btn btn btn-light col-2">
+          <button
+            className="list-item_btn btn btn-light col-2"
+            type="submit"
+            onClick={onClickConfirm}
+          >
             Confirm Order
           </button>
         )}
