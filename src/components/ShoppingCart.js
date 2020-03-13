@@ -6,10 +6,8 @@ const ShoppingCart = ({ cartList, onClickRemove, onClickConfirm }) => {
     return <CartItem key={item.id} {...item} onClickRemove={onClickRemove} />;
   });
 
-  const prices = cartList.map(item => item.price);
-
   let totalPrice = 0;
-  prices.forEach(curNum => (totalPrice += curNum));
+  cartList.map(item => item.price).forEach(curNum => (totalPrice += curNum));
 
   return (
     <div className="container-list container-fluid ">
