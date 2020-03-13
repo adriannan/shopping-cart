@@ -3,8 +3,6 @@ import ListItem from "./ListItem";
 import SearchInput from "./SearchInput";
 import UpBtn from "./UpBtn";
 import $ from "jquery";
-// const regex = /(<([^>]+)>)/gi;
-// const description = synopsis.replace(regex, " ").replace("&#39;", "'");
 
 const List = ({
   handleload,
@@ -22,6 +20,7 @@ const List = ({
     if (
       item.name
         .replace(" - ", " ")
+        .replace(", ", " ")
         .toLowerCase()
         .includes(inputValue.toLowerCase())
     ) {
