@@ -52,7 +52,7 @@ const List = ({
         $(".list-group-item").length < filteredItems.length && (
           <>
             <button
-              className="btn-load btn btn-light btn-block col-3 mx-auto"
+              className="btn-load btn btn-light btn-block col-md-3 col-6 mx-auto"
               onClick={handleload}
             >
               Load More

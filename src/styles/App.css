@@ -56,3 +56,12 @@ body {
 .home__link:hover {
   color: #212529;
 }
+
+@media screen and (max-width: 860px) {
+  .list-item_price {
+    margin-right: 0rem;
+  }
+  .list-group-item {
+    flex-wrap: wrap;
+  }
+}

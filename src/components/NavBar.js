@@ -4,11 +4,11 @@ import { NavLink } from "react-router-dom";
 const NavBar = props => {
   return (
     <div className="container-fluid bg-dark">
-      <nav className="navbar navbar-expand-lg navbar-dark d-flex justify-content-between  ml-auto mr-auto">
-        <NavLink to="/" className="navbar-brand ">
+      <nav className="navbar navbar-expand-lg navbar-dark d-flex justify-content-between  mx-auto">
+        <NavLink to="/" className="navbar-brand">
           Shopping App
         </NavLink>
-        <ul className="navbar-nav d-flex flex-nowrap justify-content-end ">
+        <ul className="navbar-nav d-flex flex-row flex-nowrap justify-content-end col-sm-12 ">
           <li className="nav-item">
             <NavLink to="/" exact className="nav-link ">
               <i className="fas fa-store"></i>

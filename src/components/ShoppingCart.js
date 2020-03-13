@@ -26,12 +26,12 @@ const ShoppingCart = ({ cartList, onClickRemove, onClickConfirm }) => {
         <h3 className="list-item_tit d-flex justify-content-start align-items-center col-6">
           Total
         </h3>
-        <span className="list-item_price d-flex  align-items-center justify-content-end col-2">
+        <span className="list-item_price d-flex  align-items-center justify-content-end col-md-2 col-6">
           {Math.round(totalPrice * 100) / 100} $
         </span>
         {itemsList.length > 0 && (
           <button
-            className="list-item_btn btn btn-light col-2"
+            className="list-item_btn btn btn-light mx-auto col-md-2 col-6"
             type="submit"
             onClick={() => {
               onClickConfirm();
