@@ -1,6 +1,10 @@
 import React from "react";
 
-const SearchInput = ({ inputValue, handleInputChange }) => {
+const SearchInput = ({ setInputValue, handleInputChange, inputValue }) => {
+  const handleChange = e => {
+    setInputValue(e.target.value);
+    handleInputChange();
+  };
   return (
     <div className="form-group">
       <input
@@ -8,7 +12,7 @@ const SearchInput = ({ inputValue, handleInputChange }) => {
         id="searchInput"
         placeholder="Search"
         value={inputValue}
-        onChange={handleInputChange}
+        onChange={handleChange}
       />
     </div>
   );
