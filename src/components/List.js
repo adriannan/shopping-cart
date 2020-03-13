@@ -1,69 +1,66 @@
 import React, { useState } from "react";
 import ListItem from "./ListItem";
 import SearchInput from "./SearchInput";
+import UpBtn from "./UpBtn";
+import $ from "jquery";
+// const regex = /(<([^>]+)>)/gi;
+// const description = synopsis.replace(regex, " ").replace("&#39;", "'");
 
 const List = ({
-  load,
+  handleload,
   onClickAdd,
-  allItemsList,
-  loadItems,
+  dataList,
+  items,
   shoppingCart,
-  handleInputChange,
-  onSearching,
-  inputValueState,
-  filteredItems
+  handleInputChange
 }) => {
-  // setting available product list
-  const allFilteredItems = filteredItems.map(item => {
-    return (
-      <ListItem
-        key={item.id}
-        id={item.id}
-        onClickAdd={onClickAdd}
-        {...item}
-        shoppingCart={shoppingCart}
-      />
-    );
-  });
-  const allItems = allItemsList.map(item => {
-    return (
-      <ListItem
-        key={item.id}
-        id={item.id}
-        onClickAdd={onClickAdd}
-        {...item}
-        shoppingCart={shoppingCart}
-      />
-    );
-  });
-  const sliceItemList = allItems.slice(0, loadItems);
+  // use hook to filter
+  const [inputValue, setInputValue] = useState("");
 
+  let filteredItems = [];
+  dataList.forEach(item => {
+    if (
+      item.name
+        .replace(" - ", " ")
+        .toLowerCase()
+        .includes(inputValue.toLowerCase())
+    ) {
+      filteredItems.push(item);
+    }
+  });
+
+  // setting available product list
+  const allItems = filteredItems.map(item => {
+    return (
+      <ListItem
+        key={item.id}
+        id={item.id}
+        onClickAdd={onClickAdd}
+        {...item}
+        shoppingCart={shoppingCart}
+      />
+    );
+  });
   return (
     <div className="container-list container-fluid ">
       <SearchInput
-        inputValue={inputValueState}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
         handleInputChange={handleInputChange}
       />
-      {onSearching && (
-        <ul
-          className="list-group"
-          style={{ maxHeight: "500px", overflow: "scroll" }}
-        >
-          {allFilteredItems}
-        </ul>
-      )}
-
-      {!onSearching && (
-        <>
-          <ul className="list-group">{sliceItemList}</ul>
-          <button
-            className="btn-load btn btn-light btn-block col-3 mx-auto"
-            onClick={load}
-          >
-            Load More
-          </button>
-        </>
-      )}
+      <ul className="list-group">{allItems.slice(0, items)}</ul>
+      {filteredItems.length > 10 &&
+        $(".list-group-item").length < filteredItems.length && (
+          <>
+            <button
+              className="btn-load btn btn-light btn-block col-3 mx-auto"
+              onClick={handleload}
+            >
+              Load More
+            </button>
+            <UpBtn />
+          </>
+        )}
     </div>
   );
 };
