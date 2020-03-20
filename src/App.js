@@ -6,7 +6,7 @@ import NavBar from "./components/NavBar";
 import List from "./components/List";
 import ShoppingCart from "./components/ShoppingCart";
 import ErrorPage from "./components/ErrorPage";
-import $ from "jquery";
+
 class App extends Component {
   state = {
     shoppingCart: [],
@@ -48,9 +48,7 @@ class App extends Component {
       shoppingCart: []
     });
   };
-  closeAlert = () => {
-    $(".alert").alert("close");
-  };
+
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>
@@ -62,7 +60,7 @@ class App extends Component {
               exact
               render={() => (
                 <List
-                  handleload={this.handleLoadMore}
+                  handleLoad={this.handleLoadMore}
                   onClickAdd={this.handleAdd}
                   handleInputChange={this.handleInputChange}
                   {...this.state}
@@ -79,7 +77,6 @@ class App extends Component {
                   )}
                   onClickRemove={this.handleRemove}
                   onClickConfirm={this.confirmOrder}
-                  // onClickCloseAlert={this.closeAlert}
                 />
               )}
             />

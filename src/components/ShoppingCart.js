@@ -45,13 +45,13 @@ const ShoppingCart = ({ cartList, onClickRemove, onClickConfirm }) => {
       {visibleAlert && (
         <div
           onClick={closeAlert}
-          class="alert alert-warning alert-dismissible fade show"
+          className="alert alert-warning alert-dismissible fade show"
           role="alert"
         >
           Your order has been confirmed. <strong>Thank You!</strong>
           <button
             type="button"
-            class="close"
+            className="close"
             data-dismiss="alert"
             aria-label="Close"
           >

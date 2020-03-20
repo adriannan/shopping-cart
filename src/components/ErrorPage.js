@@ -6,7 +6,7 @@ const ErrorPage = () => {
     <div className="d-flex flex-column align-items-center">
       <h3>Page not found</h3>
       <h4>
-        <i class="far fa-sad-tear"></i>
+        <i className="far fa-sad-tear"></i>
       </h4>
       <p>
         Please, back to the previous page or go to our

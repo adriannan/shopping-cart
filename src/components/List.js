@@ -5,7 +5,7 @@ import UpBtn from "./UpBtn";
 import $ from "jquery";
 
 const List = ({
-  handleload,
+  handleLoad,
   onClickAdd,
   dataList,
   items,
@@ -53,7 +53,7 @@ const List = ({
           <>
             <button
               className="btn-load btn btn-light btn-block col-md-3 col-6 mx-auto"
-              onClick={handleload}
+              onClick={handleLoad}
             >
               Load More
             </button>
