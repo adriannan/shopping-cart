@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import ListItem from "./ListItem";
-import SearchInput from "./SearchInput";
-import UpBtn from "./UpBtn";
-import $ from "jquery";
+import ListItem from "./modules/ListItem";
+import ListHeader from "./modules/ListHeader";
+import SearchInput from "./atoms/SearchInput";
 
 const List = ({
   handleLoad,
@@ -47,17 +46,18 @@ const List = ({
         setInputValue={setInputValue}
         handleInputChange={handleInputChange}
       />
-      <ul className="list-group">{allItems.slice(0, items)}</ul>
+      <ListHeader />
+
+      <ul className="list-group list-group-flush">{allItems.slice(0, items)}</ul>
       {filteredItems.length > 10 &&
-        $(".list-group-item").length < filteredItems.length && (
+        document.getElementsByClassName("list-group-item").length < filteredItems.length && (
           <>
             <button
-              className="btn-load btn btn-light btn-block col-md-3 col-6 mx-auto"
+              className="btn-load text-uppercase btn btn-light btn-block col-md-3 col-6 mx-auto"
               onClick={handleLoad}
             >
               Load More
             </button>
-            <UpBtn />
           </>
         )}
     </div>

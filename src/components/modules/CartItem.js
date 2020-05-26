@@ -1,5 +1,5 @@
 import React from "react";
-import RemoveBtn from "./RemoveBtn";
+import RemoveBtn from "../atoms/RemoveBtn";
 
 const CartItem = ({ name, price, onClickRemove, id }) => {
   return (

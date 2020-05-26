@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import CartItem from "./CartItem";
-import $ from "jquery";
+import CartItem from "./modules/CartItem";
+import ListHeader from "./modules/ListHeader";
 
 const ShoppingCart = ({ cartList, onClickRemove, onClickConfirm }) => {
   const [visibleAlert, setVisibleAlert] = useState(false);
   const showAlert = () => {
     setVisibleAlert(true);
-    $(".alert").alert();
   };
   const closeAlert = () => {
     setVisibleAlert(false);
@@ -21,7 +20,8 @@ const ShoppingCart = ({ cartList, onClickRemove, onClickConfirm }) => {
 
   return (
     <div className="container-list container-fluid ">
-      <ul className="list-group">{itemsList}</ul>
+      <ListHeader />
+      <ul className="list-group list-group-flush">{itemsList}</ul>
       <div className="list-group_summary list-group-item  d-flex  justify-content-between">
         <h3 className="list-item_tit d-flex justify-content-start align-items-center col-6">
           Total
