@@ -25,3 +25,13 @@
   box-shadow: none;
   box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.125);
 }
+.list_tit, .list_price{
+  font-size: .9rem;
+}
+.list-item_btn.btn-add:not(:disabled)  {
+  background:#ffa000;
+  color: #fff
+}
+.list-item_btn i {
+  margin: 0 0.5rem;
+}
